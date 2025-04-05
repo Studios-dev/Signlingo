@@ -1,0 +1,4 @@
+{
+	"deno.enablePaths": ["./scrape.ts","./deno.config.json"],
+	"deno.config": "./deno.config.json",
+}
