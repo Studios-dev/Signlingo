@@ -1,9 +1,8 @@
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import "@/firebase";
-import Link from "next/link";
 import { FirestoreContext } from "@/utils/firestore";
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect } from "react";
 import { User, getAuth } from "firebase/auth";
 import Navbar from "@/components/navbar";
 import Head from "next/head";

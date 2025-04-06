@@ -1,4 +1,4 @@
-import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { getAuth, signInWithPopup } from "firebase/auth";
 import { cn } from "@/utils/cn";
 import { useRouter } from "next/router";
 import Link from "next/link";
