@@ -1,49 +1,70 @@
 export interface WordBankQuestion {
-	type: "wordbank"
+	type: "wordbank";
 	/** Information about the question */
 	prompt: string;
 	answer: string[];
+	hint?: string;
 	/** Does not need to include the words in answer, they will automatically be included */
 	extraWordBank: string[];
 }
 
+export interface FillInTheBlankQuestion {
+	type: "fillintheblank";
+	/** Information about the question, use %blank% for the blank spot */
+	prompt: string;
+	answer: string;
+	hint?: string;
+	/** Additional incorrect words shown */
+	extraWords: string[];
+}
+
 export interface VideoWordBankQuestion {
-	type: "videowordbank"
+	type: "videowordbank";
 	/** Information about the question */
 	prompt: string;
 	answer: string[];
+	hint?: string;
 	videoUrl: string;
 	/** Does not need to include the words in answer, they will automatically be included */
 	extraWordBank: string[];
 }
 
 export interface VideoMultipleChoiceQuestion {
-	type: "videomultiplechoice"
+	type: "videomultiplechoice";
 	/** Information about the question */
 	prompt: string;
 	answer: string;
+	hint?: string;
 	videoUrl: string;
-	wrongChoices: string[];
+	extraWords: string[];
 }
 
 export interface RearrangeQuestion {
-	type: "rearrange"
+	type: "rearrange";
 	/** Information about the question */
 	prompt: string;
 	answer: string[];
-	/** Does not need to include the words in answer, they will automatically be included */
-	extraWordBank: string[];
+	hint?: string;
+	words: string[];
 }
 
 export interface RecordQuestion {
-	type: "record"
+	type: "record";
 	/** Information about the question */
 	prompt: string;
 	answer: string;
-}
+hint?: string;}
+
 
 export interface Lesson {
 	name: string;
 	lessonId: number;
-	questions: (WordBankQuestion | VideoMultipleChoiceQuestion | VideoWordBankQuestion | RearrangeQuestion | RecordQuestion)[]
+	questions: (
+		| WordBankQuestion
+		| VideoMultipleChoiceQuestion
+		| VideoWordBankQuestion
+		| RearrangeQuestion
+		| RecordQuestion
+		| FillInTheBlankQuestion
+	)[];
 }

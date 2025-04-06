@@ -1,10 +1,25 @@
 import { ArrowLeftIcon } from "@heroicons/react/24/solid";
 import Link from "next/link";
 import Head from "next/head";
-import { useState } from "react";
+import { useState, useContext, useEffect } from "react";
 import { cn } from "@/utils/cn";
+import { FirestoreContext, getUsersData } from "@/utils/firestore";
+import { getLesson } from "@/utils/lessons";
 
 export default function Lesson() {
+  const user = useContext(FirestoreContext);
+  const [stage, setStage] = useState(-1);
+  const lesson = getLesson(stage);
+
+  useEffect(() => {
+    (async () => {
+    if (user != undefined) {
+      const data = await getUsersData(user);
+      setStage(data.stage);
+    }
+  })()
+  }, [user])
+
 	const numquestions = 10;
 	const [question, setQuestion] = useState(1);
 
