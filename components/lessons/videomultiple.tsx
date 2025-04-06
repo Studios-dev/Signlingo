@@ -116,9 +116,9 @@ export default function VideoMultipleChoice({
 				<div className="flex gap-4">
 					{question.extraWords.map((v, i) => (
 						<button
-							key={v + "videomultiple"}
+							key={v + "videomultiple" + question.answer}
 							//@ts-expect-error
-							style={{ "--i": `${i * 75}ms` }}
+							style={{ "--i": `${(1 + i) * 75}ms` }}
 							className={cn(
 								"py-2 px-4 border-2 border-white/20 rounded-xl shadow-sm bg-white/10 backdrop-blur-md transition text-shadow-lg motion-preset-blur-right motion-delay-[var(--i)]",
 								selected === v && "bg-white text-cyan-950"

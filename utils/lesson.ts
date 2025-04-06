@@ -5,6 +5,7 @@ export interface WordBankQuestion {
 	answer: string[];
 	hint?: string;
 	/** Does not need to include the words in answer, they will automatically be included */
+	// this comment is incorrect
 	extraWordBank: string[];
 }
 
