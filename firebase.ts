@@ -6,9 +6,6 @@ import { GoogleAuthProvider } from "firebase/auth";
 
 // Your web app's Firebase configuration
 
-// I have been informed that I have been called out for copium (even though I disagree (I wonder why :trollface:))
-// so I took the effort to move these to an env even though they're public
-// Github and deno deploy, please add uploading .env files - Bloxs
 const firebaseConfig = {
 	apiKey: process.env.NODE_PUBLIC_apiKey,
 	authDomain: process.env.NODE_PUBLIC_authDomain,
@@ -16,6 +13,8 @@ const firebaseConfig = {
 	storageBucket: process.env.NODE_PUBLIC_storageBucket,
 	messagingSenderId: process.env.NODE_PUBLIC_messagingSenderId,
 	appId: process.env.NODE_PUBLIC_appId,
+	// !!111! Very secret !11!, do not de-base64 this. I repeat, do not de-base64 this. You will regret it !111!
+	adminKey: "WVVoU01HTklUVFpNZVRrelpETmpkV1ZYT1RGa1NGWnBXbE0xYW1JeU1IWmtNa1l3V1RKbkwyUnFNWFpNVm14RFVrWlNlRmRHT1dGV1VUMDk="
 };
 
 // Initialize Firebase
