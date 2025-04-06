@@ -16,8 +16,10 @@ import Rearrange from "@/components/lessons/rearrange";
 import FillIn from "@/components/lessons/fillin";
 import VideoMultipleChoice from "@/components/lessons/videomultiple";
 import WordBank from "@/components/lessons/wordbank";
+import { useRouter } from "next/router";
 
 export default function Lesson() {
+	const router = useRouter();
 	const user = useContext(FirestoreContext);
 	const [stage, setStage] = useState(-1);
 	const lesson = getLesson(stage);
@@ -109,10 +111,8 @@ export default function Lesson() {
 						onClick={() => {
 							if (questionComponent.validate()) {
 								if (question === lesson.questions.length) {
-									// setQuestion(-1);
-									// setStage(stage + 1);
-									// setUserData("stage", stage + 1, user);
-									// insert rewards here
+									setUserData("stage", stage + 1, user);
+									router.push("/learn/completed");
 								} else {
 									setQuestion((q) => ++q);
 								}

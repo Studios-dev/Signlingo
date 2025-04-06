@@ -1,10 +1,26 @@
 import { cn } from "@/utils/cn";
+import { FirestoreContext, getUsersData, setUserData } from "@/utils/firestore";
 import Head from "next/head";
 import Link from "next/link";
+import { useContext, useEffect, useState } from "react";
 import ReactConfetti from "react-confetti";
 import Countup from "react-countup";
 
 export default function Completed() {
+	const user = useContext(FirestoreContext);
+	const [hasGivenXP, setHasGivenXP] = useState(false);
+
+	useEffect(() => {
+		if (user && !hasGivenXP) {
+			(async () => {
+				const data = await getUsersData(user);
+				setHasGivenXP(true);
+				setUserData("xp", data.xp + 25, user);
+				setUserData("gems", data.gems + 10, user);
+			})();
+		}
+	}, [user]);
+
 	return (
 		<>
 			<Head>
@@ -20,7 +36,10 @@ export default function Completed() {
 				</div>
 				<div className="flex flex-col gap-8 mt-16 w-96 z-10">
 					<div className="flex border-2 border-white/20 bg-white/10 p-6 rounded-xl justify-between items-center motion-preset-blur-up-lg motion-duration-700">
-						<img src="/gem.svg" className="size-18 motion-preset-blur-right motion-delay-300" />
+						<img
+							src="/gem.svg"
+							className="size-18 motion-preset-blur-right motion-delay-300"
+						/>
 						<div className="font-bold text-3xl flex motion-preset-blur-right motion-delay-500">
 							+
 							<div className="w-10 ml-px">
@@ -30,7 +49,9 @@ export default function Completed() {
 					</div>
 
 					<div className="flex border-2 border-white/20 bg-white/10 p-6 rounded-xl justify-between items-center motion-preset-blur-up-lg motion-duration-700 motion-delay-1500">
-						<p className="text-7xl font-extrabold text-transparent bg-radial-[at_50%_0%] from-teal-400 to-teal-700 bg-clip-text motion-preset-blur-right motion-delay-1800">XP</p>
+						<p className="text-7xl font-extrabold text-transparent bg-radial-[at_50%_0%] from-teal-400 to-teal-700 bg-clip-text motion-preset-blur-right motion-delay-1800">
+							XP
+						</p>
 						<div className="font-bold text-3xl flex motion-preset-blur-right motion-delay-2000">
 							+
 							<div className="w-10 ml-px">
