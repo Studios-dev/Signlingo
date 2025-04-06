@@ -5,6 +5,14 @@ on:
   pull_request:
     branches: master
 
+env:
+    NEXT_PUBLIC_apiKey: ${{ secrets.NEXT_PUBLIC_apiKey }}
+    NEXT_PUBLIC_authDomain: ${{ secrets.NEXT_PUBLIC_authDomain }}
+    NEXT_PUBLIC_projectId: ${{ secrets.NEXT_PUBLIC_projectId }}
+    NEXT_PUBLIC_storageBucket: ${{ secrets.NEXT_PUBLIC_storageBucket }}
+    NEXT_PUBLIC_messagingSenderId: ${{ secrets.NEXT_PUBLIC_messagingSenderId }}
+    NEXT_PUBLIC_appId: ${{ secrets.NEXT_PUBLIC_appId }}
+
 jobs:
   deploy:
     name: Deploy
