@@ -1,17 +1,35 @@
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import "@/firebase";
+import Link from "next/link";
+import { FirestoreContext } from "@/utils/firestore";
+import { useState, useEffect, useMemo } from "react";
+import { User, getAuth } from "firebase/auth";
+import Navbar from "@/components/navbar";
 
 export default function App({ Component, pageProps }: AppProps) {
+  const [user, setUser] = useState<null | User | undefined>(undefined);
+
+  useEffect(() => {
+    const unsubscribe = getAuth().onAuthStateChanged((user) => {
+      if (user) {
+        setUser(user);
+      } else {
+        setUser(null);
+      }
+    });
+
+    return () => unsubscribe();
+  }, []);
+
   return (
-    <main className={`bg-[#142F35] min-h-screen flex flex-col text-white inter`}>
-      <nav className="rounded-xl bg-white/10 border-2 border-white/20 px-4 py-2 mt-4 mx-8 flex justify-between items-center">
-        <div className="flex gap-4 items-center text-lg font-bold tracking-wide">
-          <img src="/logo.png" className="size-8" />
-          <p>Signlingo</p>
-        </div>
-      </nav>
-      <Component {...pageProps} />
-    </main>
+    <FirestoreContext.Provider value={user}>
+      <main
+        className={`bg-[#142F35] min-h-screen flex flex-col text-white inter`}
+      >
+        <Navbar />
+        {user === undefined ? <></> : <Component {...pageProps} />}
+      </main>
+    </FirestoreContext.Provider>
   );
 }

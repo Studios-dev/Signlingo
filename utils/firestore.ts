@@ -5,19 +5,31 @@ import {
   setDoc,
   updateDoc,
 } from "firebase/firestore";
-import { getUser } from "firebase/auth";
+import { User } from "firebase/auth";
+import { createContext, useContext } from "react";
+
+export const FirestoreContext = createContext<null | User | undefined>(null);
 
 const db = getFirestore();
 
-interface UserData {
+export interface UserData {
   gems: number;
   hearts: number;
   level: number;
   xp: number;
+  stage: number;
 }
 
-export const getUsersData = async () => {
-  const user = getUser();
+let dataCache: UserData | null = null;
+
+export const getUsersDataCached = () => {
+  return dataCache;
+};
+
+export const getUsersData = async (user = useContext(FirestoreContext)) => {
+  if (dataCache !== null) {
+    return dataCache;
+  }
 
   if (!user) {
     throw new Error("User not authenticated");
@@ -25,63 +37,80 @@ export const getUsersData = async () => {
 
   const userId = user.uid;
 
-  const [xpDoc, gemsDoc, heartsDoc, levelDoc] = [
+  const [xpDoc, gemsDoc, heartsDoc, levelDoc, stageDoc] = [
     doc(db, "xp", userId),
     doc(db, "gems", userId),
     doc(db, "hearts", userId),
     doc(db, "level", userId),
+    doc(db, "stage", userId),
   ];
 
-  let [xp, gems, hearts, level] = await Promise.all([
+  let [xp, gems, hearts, level, stage] = await Promise.all([
     getDoc(xpDoc),
     getDoc(gemsDoc),
     getDoc(heartsDoc),
     getDoc(levelDoc),
+    getDoc(stageDoc),
   ]);
 
   const promises = [];
 
-  if (!xp.exists()) {
+  if (!xp.exists() || xp.data() == undefined) {
     promises.push(setDoc(xpDoc, { value: 0 }));
-    xp = { exists: () => true, data: () => ({ value: 0 }) };
+    // @ts-expect-error If you know about a problem it's no longer a problem - Bloxs
+    xp = { data: () => ({ value: 0 }) };
   }
 
-  if (!gems.exists()) {
+  if (!gems.exists() || gems.data() == undefined) {
     promises.push(setDoc(gemsDoc, { value: 0 }));
-    gems = { exists: () => true, data: () => ({ value: 0 }) };
+    // @ts-expect-error If you know about a problem it's no longer a problem - Bloxs
+    gems = { data: () => ({ value: 0 }) };
   }
 
-  if (!hearts.exists()) {
+  if (!hearts.exists() || hearts.data() == undefined) {
     promises.push(setDoc(heartsDoc, { value: 5 }));
-    hearts = { exists: () => true, data: () => ({ value: 5 }) };
+    // @ts-expect-error If you know about a problem it's no longer a problem - Bloxs
+    hearts = { data: () => ({ value: 5 }) };
   }
 
-  if (!level.exists()) {
+  if (!level.exists() || level.data() == undefined) {
     promises.push(setDoc(levelDoc, { value: 1 }));
-    level = { exists: () => true, data: () => ({ value: 1 }) };
+    // @ts-expect-error If you know about a problem it's no longer a problem - Bloxs
+    level = { data: () => ({ value: 1 }) };
+  }
+
+  if (!stage.exists() || stage.data() == undefined) {
+    promises.push(setDoc(stageDoc, { value: 0 }));
+    // @ts-expect-error If you know about a problem it's no longer a problem - Bloxs
+    stage = { data: () => ({ value: 0 }) };
   }
 
   await Promise.all(promises);
 
-  return {
-    xp: xp.data().value,
-    gems: gems.data().value,
-    hearts: hearts.data().value,
-    level: level.data().value,
+  dataCache = {
+    xp: xp.data()!.value as number,
+    gems: gems.data()!.value as number,
+    hearts: hearts.data()!.value as number,
+    level: level.data()!.value as number,
+    stage: stage.data()!.value as number,
   };
+
+  return dataCache;
 };
 
 export const setUserData = async (
-  field: "xp" | "gems" | "hearts" | "level",
-  value: number
+  field: "xp" | "gems" | "hearts" | "level" | "stage",
+  value: number,
+  user = useContext(FirestoreContext)
 ) => {
-  const user = getUser();
   if (!user) {
     throw new Error("User not authenticated");
   }
 
   const userId = user.uid;
-  const doc = doc(db, field, userId);
+  const targetDoc = doc(db, field, userId);
 
-  await updateDoc(doc, { value: value });
+  dataCache![field] = value;
+
+  await updateDoc(targetDoc, { value: value });
 };

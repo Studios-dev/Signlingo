@@ -1,24 +1,24 @@
 import { getAuth } from "firebase/auth";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
+import { useEffect, useContext } from "react";
 import { getFirestore } from "firebase/firestore";
 import Stage from "@/components/stage";
-
-const db = getFirestore();
+import { getUsersData, FirestoreContext } from "@/utils/firestore";
+import Link from "next/link";
 
 export default function Learn() {
-  const auth = getAuth();
+  const user = useContext(FirestoreContext);
   const router = useRouter();
 
   useEffect(() => {
-    if (!auth.currentUser && window) {
+    if (!user) {
       router.push("/");
     }
-  }, [auth]);
+  }, [user]);
 
   return (
     <div className="flex flex-col grow py-20 items-center">
-      <div className="flex w-96 items-center pb-10">
+      <div className="flex w-96 items-center pb-10 motion-preset-blur-up">
         <div className="rounded-full h-0.75 bg-[#2E4C53] grow"></div>
         <p className="px-4 text-[#3B6A75] text-base/0 font-semibold">
           Ordering at a Restaurant
@@ -26,11 +26,21 @@ export default function Learn() {
         <div className="rounded-full h-0.75 bg-[#2E4C53] grow"></div>
       </div>
       <div className="flex flex-col gap-8">
-        <Stage />
-        <Stage className="-translate-x-18" />
-        <Stage className="-translate-x-36" />
-        <Stage className="-translate-x-18" />
-        <Stage />
+        <Link href="/learn/lesson">
+          <Stage stage={1} className="motion-delay-100 motion-preset-blur-up" />
+        </Link>
+        <Link href="/learn/lesson">
+          <Stage className="!-translate-x-18 motion-delay-200 motion-preset-blur-up" />
+        </Link>
+        <Link href="/learn/lesson">
+          <Stage className="!-translate-x-36 motion-delay-300 motion-preset-blur-up" />
+        </Link>
+        <Link href="/learn/lesson">
+          <Stage className="!-translate-x-18 motion-delay-400 motion-preset-blur-up" />
+        </Link>
+        <Link href="/learn/lesson">
+          <Stage className="motion-delay-500 motion-preset-blur-up" />
+        </Link>
       </div>
       <div className="flex w-96 items-center pt-20 pb-10">
         <div className="rounded-full h-0.75 bg-[#2E4C53] grow"></div>
