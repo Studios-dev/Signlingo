@@ -109,6 +109,7 @@ const lessonTwo: Lesson = {
 		{
 			type: "fillintheblank",
 			answer: "restaurant",
+			hint: "We are going to the restaurant now",
 			prompt: "We go%blank%now",
 			extraWords: ["stop", "go", "restaurant", "eat", "apple"],
 		},

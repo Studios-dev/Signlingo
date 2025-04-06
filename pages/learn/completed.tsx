@@ -10,15 +10,16 @@ export default function Completed() {
 			<Head>
 				<title>Signlingo | Lesson</title>
 			</Head>
-			<div className="grow flex flex-col items-center mb-10 mt-5">
+			<div className="pointer-events-none z-[1]">
+				<ReactConfetti className="size-full" />
+			</div>
+			<div className="grow flex flex-col items-center mb-10 mt-5 z-10">
 				<h2 className="font-medium text-lg mb-2 tracking-wide text-gray-300">
 					Lesson Complete!
 				</h2>
 				<div className="rounded-full w-96 h-3.5 bg-linear-90 from-cyan-600 to-cyan-700"></div>
-				<div className="pointer-events-none">
-					<ReactConfetti className="size-full" />
-				</div>
-				<div className="flex flex-col gap-8 mt-16 w-96 z-10">
+
+				<div className="flex flex-col gap-8 mt-16 w-96">
 					<div className="flex border-2 border-white/20 bg-white/10 p-6 rounded-xl justify-between items-center motion-preset-blur-up-lg motion-duration-700">
 						<img
 							src="/gem.svg"
@@ -48,7 +49,7 @@ export default function Completed() {
 					className={cn(
 						"rounded-xl bg-cyan-800 font-medium text-lg w-72 h-12 border-b-4 border-cyan-900 mt-auto grid place-items-center",
 						" motion-duration-1000",
-						"transition-all hover:focus:border-b-0 hover:focus:scale-y-92"
+						"transition-all hover:focus:border-b-0 hover:focus:scale-y-92 z-10"
 					)}
 					href="/learn"
 				>

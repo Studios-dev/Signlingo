@@ -35,7 +35,7 @@ export default function Lesson() {
 		})();
 	}, [user]);
 
-	const [question, setQuestion] = useState(7);
+	const [question, setQuestion] = useState(1);
 
 	const questionJSON = lesson.questions[question - 1];
 	const questionType = questionJSON?.type;
@@ -92,18 +92,7 @@ export default function Lesson() {
 					/>
 				</div>
 				{questionComponent.component}
-				{question === lesson.questions.length ? (
-					<Link
-						href="/learn/completed"
-						className={cn(
-							"rounded-xl bg-cyan-800 font-medium text-lg w-72 h-12 border-b-4 border-cyan-900 mt-auto grid place-items-center",
-							"motion-preset-slide-up motion-duration-1000",
-							"transition-all hover:focus:border-b-0 hover:focus:scale-y-92"
-						)}
-					>
-						{"Finish Lessson 🎉"}
-					</Link>
-				) : (
+				
 					<button
 						className={cn(
 							"rounded-xl bg-cyan-800 font-medium text-lg w-72 h-12 border-b-4 border-cyan-900 mt-auto",
@@ -119,15 +108,18 @@ export default function Lesson() {
 									router.push("/learn/completed");
 								} else {
 									setQuestion((q) => ++q);
+									if (question === lesson.questions.length - 1) {
+										router.prefetch("/learn/completed");
+									}
 								}
 							} else {
 								alert("Please fill in the question correctly.");
 							}
 						}}
 					>
-						Next
+						{question === lesson.questions.length ? "Finish Lessson 🎉" : "Next"}
 					</button>
-				)}
+				
 			</div>
 		</>
 	);
