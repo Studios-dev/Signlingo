@@ -9,9 +9,9 @@ import {
 	FillInTheBlankQuestion,
 	RearrangeQuestion,
 	VideoMultipleChoiceQuestion,
-  WordBankQuestion,
+	WordBankQuestion,
 } from "@/utils/lesson";
-
+import Confetti from "react-confetti";
 import Rearrange from "@/components/lessons/rearrange";
 import FillIn from "@/components/lessons/fillin";
 import VideoMultipleChoice from "@/components/lessons/videomultiple";
@@ -31,38 +31,10 @@ export default function Lesson() {
 		})();
 	}, [user]);
 
-	const [question, setQuestion] = useState(1);
-
-  if (question === -1) {
-    return (
-      <>
-			<Head>
-				<title>Signlingo | Lesson</title>
-			</Head>
-			<div className="grow flex flex-col items-center mb-10 mt-29">
-				<h2 className="font-medium text-lg mb-2 tracking-wide text-gray-300">
-					{lesson.name}
-				</h2>
-				<div className="rounded-full w-96 h-3.5 from-cyan-600 to-cyan-700 relative overflow-hidden">
-					
-				</div>
-				<Link
-					className={cn(
-						"rounded-xl bg-cyan-800 font-medium text-lg w-72 h-12 border-b-4 border-cyan-900 mt-auto",
-						"motion-preset-slide-up motion-duration-1000",
-						"transition-all hover:focus:border-b-0 hover:focus:scale-y-92"
-					)}
-					href="/learn"
-				>
-					Home
-				</Link>
-			</div>
-		</>
-    )
-  }
+	const [question, setQuestion] = useState(7);
 
 	const questionJSON = lesson.questions[question - 1];
-	const questionType = questionJSON.type;
+	const questionType = questionJSON?.type;
 
 	// This is a really bad way to do this
 	// But it's small and *theoretically works without errors* - Bloxs
@@ -116,31 +88,42 @@ export default function Lesson() {
 					/>
 				</div>
 				{questionComponent.component}
-				<button
-					className={cn(
-						"rounded-xl bg-cyan-800 font-medium text-lg w-72 h-12 border-b-4 border-cyan-900 mt-auto",
-						"motion-preset-slide-up motion-duration-1000",
-						"transition-all hover:focus:border-b-0 hover:focus:scale-y-92"
-					)}
-					onClick={() => {
-						if (questionComponent.validate()) {
-							if (question === lesson.questions.length) {
-								setQuestion(-1);
-								// setStage(stage + 1);
-								setUserData("stage", stage + 1, user);
-								// insert rewards here
+				{question === lesson.questions.length ? (
+					<Link
+						href="/learn/completed"
+						className={cn(
+							"rounded-xl bg-cyan-800 font-medium text-lg w-72 h-12 border-b-4 border-cyan-900 mt-auto grid place-items-center",
+							"motion-preset-slide-up motion-duration-1000",
+							"transition-all hover:focus:border-b-0 hover:focus:scale-y-92"
+						)}
+					>
+						{"Finish Lessson 🎉"}
+					</Link>
+				) : (
+					<button
+						className={cn(
+							"rounded-xl bg-cyan-800 font-medium text-lg w-72 h-12 border-b-4 border-cyan-900 mt-auto",
+							"motion-preset-slide-up motion-duration-1000",
+							"transition-all hover:focus:border-b-0 hover:focus:scale-y-92"
+						)}
+						onClick={() => {
+							if (questionComponent.validate()) {
+								if (question === lesson.questions.length) {
+									// setQuestion(-1);
+									// setStage(stage + 1);
+									// setUserData("stage", stage + 1, user);
+									// insert rewards here
+								} else {
+									setQuestion((q) => ++q);
+								}
 							} else {
-								setQuestion((q) => ++q);
+								alert("Please fill in the question correctly.");
 							}
-						} else {
-							alert("Please fill in the question correctly.");
-						}
-					}}
-				>
-					{question === lesson.questions.length
-						? "Finish Lessson 🎉"
-						: "Next"}
-				</button>
+						}}
+					>
+						Next
+					</button>
+				)}
 			</div>
 		</>
 	);
