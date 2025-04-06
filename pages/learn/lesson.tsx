@@ -22,6 +22,7 @@ export default function Lesson() {
 	const router = useRouter();
 	const user = useContext(FirestoreContext);
 	const [stage, setStage] = useState(-1);
+	const [{ xp, gems }, setUserStateData] = useState({ xp: 0, gems: 0 });
 	const lesson = getLesson(stage);
 
 	useEffect(() => {
@@ -29,6 +30,7 @@ export default function Lesson() {
 			if (user != undefined) {
 				const data = await getUsersData(user);
 				setStage(data.stage);
+				setUserStateData({ xp: data.xp, gems: data.gems });
 			}
 		})();
 	}, [user]);
@@ -112,6 +114,8 @@ export default function Lesson() {
 							if (questionComponent.validate()) {
 								if (question === lesson.questions.length) {
 									setUserData("stage", stage + 1, user);
+									setUserData("xp", xp + 25, user);
+									setUserData("gems", gems + 10, user);
 									router.push("/learn/completed");
 								} else {
 									setQuestion((q) => ++q);

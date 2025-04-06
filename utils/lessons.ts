@@ -1,8 +1,9 @@
-import { Lesson, WordBankQuestion } from "./lesson";
+import { Lesson } from "./lesson";
 
 export const getLesson = (lesson: number) => {
 	const lessons: Record<number, Lesson> = {
 		[lessonOne.lessonId]: lessonOne,
+		[lessonTwo.lessonId]: lessonTwo,
 	};
 
 	return lessons[lesson] ?? lessonOne;
@@ -61,7 +62,7 @@ const lessonOne: Lesson = {
 				"used by a speaker to refer to himself or herself as the object of a verb phrase",
 			extraWords: ["my", "think", "me", "small", "want", "food"],
 		},
-		
+
 		{
 			type: "wordbank",
 			prompt: "I am eating in the restaurant",
@@ -77,7 +78,6 @@ const lessonOne: Lesson = {
 		},
 	],
 };
-
 
 const lessonTwo: Lesson = {
 	name: "Restaurant Basics Part Two",
@@ -95,15 +95,17 @@ const lessonTwo: Lesson = {
 			prompt: "You want%blank%what",
 			extraWords: ["stop", "eat", "go", "apple", "think"],
 		},
-		
+
 		{
 			type: "videomultiplechoice",
 			answer: "eat",
 			prompt: "Please select the word that best matches the video",
 			definition: "to put food in your mouth and swallow it",
 			extraWords: ["me", "eat", "go", "think", "food"],
+			videoUrl:
+				"https://main-bucket-signlab-us.s3.us-east-2.amazonaws.com/signs/medium-size/mp4-videos/A-Z_From_Down_T4[39s].mp4",
 		},
-		
+
 		{
 			type: "fillintheblank",
 			answer: "restaurant",
@@ -120,8 +122,11 @@ const lessonTwo: Lesson = {
 			type: "videomultiplechoice",
 			answer: "apple",
 			prompt: "Please select the word that best matches the video",
-			definition: "the round fruit of a tree of the rose family, which typically has thin red or green skin and crisp flesh.",
+			definition:
+				"the round fruit of a tree of the rose family, which typically has thin red or green skin and crisp flesh.",
 			extraWords: ["stop", "me", "pizza", "think", "want", "small"],
+			videoUrl:
+				"https://main-bucket-signlab-us.s3.us-east-2.amazonaws.com/signs/medium-size/mp4-videos/A-Z_T2[1m23s].mp4",
 		},
 		{
 			type: "record",

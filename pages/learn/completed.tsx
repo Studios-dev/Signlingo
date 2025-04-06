@@ -1,26 +1,10 @@
 import { cn } from "@/utils/cn";
-import { FirestoreContext, getUsersData, setUserData } from "@/utils/firestore";
 import Head from "next/head";
 import Link from "next/link";
-import { useContext, useEffect, useState } from "react";
 import ReactConfetti from "react-confetti";
 import Countup from "react-countup";
 
 export default function Completed() {
-	const user = useContext(FirestoreContext);
-	const [hasGivenXP, setHasGivenXP] = useState(false);
-
-	useEffect(() => {
-		if (user && !hasGivenXP) {
-			(async () => {
-				const data = await getUsersData(user);
-				setHasGivenXP(true);
-				setUserData("xp", data.xp + 25, user);
-				setUserData("gems", data.gems + 10, user);
-			})();
-		}
-	}, [user]);
-
 	return (
 		<>
 			<Head>
