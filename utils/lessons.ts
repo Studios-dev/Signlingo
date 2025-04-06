@@ -70,12 +70,6 @@ const lessonOne: Lesson = {
 			answer: ["me", "eat", "restaurant"],
 			extraWordBank: ["restaurant", "I", "eating", "me", "eat", "the"],
 		},
-		{
-			type: "record",
-			answer: "me",
-			prompt: "me",
-			hint: "Point your index finger at yourself and touch your chest",
-		},
 	],
 };
 
@@ -116,7 +110,7 @@ const lessonTwo: Lesson = {
 		{
 			type: "wordbank",
 			prompt: "I want pizza now",
-			answer: ["me", "want", "pizza", "now"],
+			answer: ["me", "want", "pizza"],
 			extraWordBank: ["I", "want", "pizza", "now", "eat", "me"],
 		},
 		{
@@ -125,14 +119,9 @@ const lessonTwo: Lesson = {
 			prompt: "Please select the word that best matches the video",
 			definition:
 				"the round fruit of a tree of the rose family, which typically has thin red or green skin and crisp flesh.",
-			extraWords: ["stop", "me", "pizza", "think", "want", "small"],
+			extraWords: ["stop", "me", "pizza", "think", "want", "apple", "small"],
 			videoUrl:
 				"https://main-bucket-signlab-us.s3.us-east-2.amazonaws.com/signs/medium-size/mp4-videos/A-Z_T2[1m23s].mp4",
-		},
-		{
-			type: "record",
-			answer: "eat",
-			prompt: "eat",
 		},
 	],
 };
