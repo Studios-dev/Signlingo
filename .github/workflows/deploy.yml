@@ -6,12 +6,12 @@ on:
     branches: master
 
 env:
-    NEXT_PUBLIC_apiKey: ${{ secrets.NEXT_PUBLIC_apiKey }}
-    NEXT_PUBLIC_authDomain: ${{ secrets.NEXT_PUBLIC_authDomain }}
-    NEXT_PUBLIC_projectId: ${{ secrets.NEXT_PUBLIC_projectId }}
-    NEXT_PUBLIC_storageBucket: ${{ secrets.NEXT_PUBLIC_storageBucket }}
-    NEXT_PUBLIC_messagingSenderId: ${{ secrets.NEXT_PUBLIC_messagingSenderId }}
-    NEXT_PUBLIC_appId: ${{ secrets.NEXT_PUBLIC_appId }}
+    NEXT_PUBLIC_APIKEY: ${{ secrets.NEXT_PUBLIC_APIKEY }}
+    NEXT_PUBLIC_AUTHDOMAIN: ${{ secrets.NEXT_PUBLIC_AUTHDOMAIN }}
+    NEXT_PUBLIC_PROJECTID: ${{ secrets.NEXT_PUBLIC_PROJECTID }}
+    NEXT_PUBLIC_STORAGEBUCKET: ${{ secrets.NEXT_PUBLIC_STORAGEBUCKET }}
+    NEXT_PUBLIC_MESSAGINGSENDERID: ${{ secrets.NEXT_PUBLIC_MESSAGINGSENDERID }}
+    NEXT_PUBLIC_APPID: ${{ secrets.NEXT_PUBLIC_APPID }}
 
 jobs:
   deploy:
