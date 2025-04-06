@@ -117,7 +117,7 @@ export default function Lesson() {
 							}
 						}}
 					>
-						{question === lesson.questions.length ? "Finish Lessson 🎉" : "Next"}
+						{question === lesson.questions.length ? "Finish Lesson 🎉" : "Next"}
 					</button>
 				
 			</div>
