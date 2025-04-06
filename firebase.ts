@@ -7,12 +7,12 @@ import { GoogleAuthProvider } from "firebase/auth";
 // Your web app's Firebase configuration
 
 const firebaseConfig = {
-	apiKey: process.env.NEXT_PUBLIC_apiKey,
-	authDomain: process.env.NEXT_PUBLIC_authDomain,
-	projectId: process.env.NEXT_PUBLIC_projectId,
-	storageBucket: process.env.NEXT_PUBLIC_storageBucket,
-	messagingSenderId: process.env.NEXT_PUBLIC_messagingSenderId,
-	appId: process.env.NEXT_PUBLIC_appId,
+	apiKey: process.env.NEXT_PUBLIC_APIKEY,
+	authDomain: process.env.NEXT_PUBLIC_AUTHDOMAIN,
+	projectId: process.env.NEXT_PUBLIC_PROJECTID,
+	storageBucket: process.env.NEXT_PUBLIC_STORAGEBUCKET,
+	messagingSenderId: process.env.NEXT_PUBLIC_MESSAGINGSENDERID,
+	appId: process.env.NEXT_PUBLIC_APPID,
 	// !!111! Very secret !11!, do not de-base64 this. I repeat, do not de-base64 this. You will regret it !111!
 	adminKey: "WVVoU01HTklUVFpNZVRrelpETmpkV1ZYT1RGa1NGWnBXbE0xYW1JeU1IWmtNa1l3V1RKbkwyUnFNWFpNVm14RFVrWlNlRmRHT1dGV1VUMDk="
 };
