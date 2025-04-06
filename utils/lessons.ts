@@ -17,8 +17,9 @@ const lessonOne: Lesson = {
 			answer: "meat",
 			prompt: "Please select the word that best matches the video",
 			hint: "Tap the question mark at the bottom whenever you don't recognize a word",
+			definition: "the flesh of an animal (especially a mammal) as food.",
 			videoUrl: "https://main-bucket-signlab-us.s3.us-east-2.amazonaws.com/signs/medium-size/mp4-videos/A-Z_From_Down_T4[7m37s].mp4",
-			extraWords: ["apple", "me", "stand", "stop", "pizza", "think"]
+			extraWords: ["apple", "me", "stand", "stop", "meat", "pizza", "think"]
 		},
 		{
 			type: "fillintheblank",
@@ -46,6 +47,7 @@ const lessonOne: Lesson = {
 			answer: "me",
 			prompt: "Please select the word that best matches the video",
 			videoUrl: "/videos/me.mp4",
+			definition: "used by a speaker to refer to himself or herself as the object of a verb phrase",
 			extraWords: ["my", "think", "big", "small", "want", "food"]
 		},
 		{

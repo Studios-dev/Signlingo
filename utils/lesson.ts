@@ -35,6 +35,7 @@ export interface VideoMultipleChoiceQuestion {
 	prompt: string;
 	answer: string;
 	hint?: string;
+	definition: string;
 	videoUrl: string;
 	extraWords: string[];
 }
