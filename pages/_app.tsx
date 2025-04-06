@@ -1,6 +1,6 @@
+import "@/firebase";
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
-import "@/firebase";
 import { FirestoreContext } from "@/utils/firestore";
 import { useState, useEffect } from "react";
 import { User, getAuth } from "firebase/auth";
