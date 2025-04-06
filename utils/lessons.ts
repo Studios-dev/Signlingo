@@ -77,3 +77,56 @@ const lessonOne: Lesson = {
 		},
 	],
 };
+
+
+const lessonTwo: Lesson = {
+	name: "Restaurant Basics Part Two",
+	lessonId: 1,
+	questions: [
+		{
+			type: "rearrange",
+			answer: ["me", "want", "drink"],
+			prompt: "I want a drink",
+			words: ["want", "drink", "me"],
+		},
+		{
+			type: "fillintheblank",
+			answer: "eat",
+			prompt: "You want%blank%what",
+			extraWords: ["stop", "eat", "go", "apple", "think"],
+		},
+		
+		{
+			type: "videomultiplechoice",
+			answer: "eat",
+			prompt: "Please select the word that best matches the video",
+			definition: "to put food in your mouth and swallow it",
+			extraWords: ["me", "eat", "go", "think", "food"],
+		},
+		
+		{
+			type: "fillintheblank",
+			answer: "restaurant",
+			prompt: "We go%blank%now",
+			extraWords: ["stop", "go", "restaurant", "eat", "apple"],
+		},
+		{
+			type: "wordbank",
+			prompt: "I want pizza now",
+			answer: ["me", "want", "pizza", "now"],
+			extraWordBank: ["I", "want", "pizza", "now", "eat", "me"],
+		},
+		{
+			type: "videomultiplechoice",
+			answer: "apple",
+			prompt: "Please select the word that best matches the video",
+			definition: "the round fruit of a tree of the rose family, which typically has thin red or green skin and crisp flesh.",
+			extraWords: ["stop", "me", "pizza", "think", "want", "small"],
+		},
+		{
+			type: "record",
+			answer: "eat",
+			prompt: "eat",
+		},
+	],
+};
