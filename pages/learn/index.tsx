@@ -1,7 +1,5 @@
-import { getAuth } from "firebase/auth";
 import { useRouter } from "next/router";
 import { useEffect, useContext } from "react";
-import { getFirestore } from "firebase/firestore";
 import Stage from "@/components/stage";
 import { getUsersData, FirestoreContext } from "@/utils/firestore";
 import Link from "next/link";
@@ -15,7 +13,7 @@ export default function Learn() {
     if (!user) {
       router.push("/");
     }
-  }, [user]);
+  }, [user, router]);
 
   return (
     <>

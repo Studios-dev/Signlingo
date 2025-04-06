@@ -3,20 +3,21 @@ import Link from "next/link";
 import {
   FirestoreContext,
   getUsersData,
-  UserData,
   getUsersDataCached,
 } from "@/utils/firestore";
 
 export default function Navbar() {
   const user = useContext(FirestoreContext);
   const usersData = getUsersDataCached();
+  // For some reason the _ is counted as an unused variable (even though _ means unused) so eslint disable it is - Bloxs
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [_, forceUpdate] = useState(0);
 
   useEffect(() => {
     (async () => {
       if (user != null) {
         await getUsersData(user);
-		forceUpdate((prev) => prev + 1);
+		    forceUpdate((prev) => prev + 1);
       }
     })();
   }, [user]);
