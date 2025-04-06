@@ -23,16 +23,16 @@ const lessonOne: Lesson = {
 		{
 			type: "fillintheblank",
 			answer: "me",
-			prompt: "Tomorrow restaurant %blank% go",
+			prompt: "Tomorrow restaurant%blank%go",
 			hint: "In ASL, we generally favor me over I because pronouns don't change form",
 			extraWords: ["I", "me", "my", "stop"],
 		},
 		{
 			type: "fillintheblank",
 			answer: "food",
-			prompt: "Me want %blank%",
+			prompt: "Me want%blank%",
 			hint: "In ASL, sentences are worded differently than in English. Over time, you'll gain an intuitive understanding of ASL's structure",
-			extraWords: ["think", "a", "stand", "stop"],
+			extraWords: ["think", "a", "stand", "food", "stop"],
 		},
 		{
 			type: "rearrange",

@@ -6,6 +6,9 @@ import { useState, useEffect } from "react";
 import { User, getAuth } from "firebase/auth";
 import Navbar from "@/components/navbar";
 import Head from "next/head";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+const queryClient = new QueryClient()
 
 export default function App({ Component, pageProps }: AppProps) {
   const [user, setUser] = useState<null | User | undefined>(undefined);
@@ -28,12 +31,14 @@ export default function App({ Component, pageProps }: AppProps) {
         <title>Signlingo - Master ASL The Engaging Way</title>
       </Head>
       <FirestoreContext.Provider value={user}>
+      <QueryClientProvider client={queryClient}>
         <main
           className={`bg-[#142F35] min-h-screen flex flex-col text-white inter`}
         >
           <Navbar />
           {user === undefined ? <></> : <Component {...pageProps} />}
         </main>
+        </QueryClientProvider>
       </FirestoreContext.Provider>
     </>
   );
